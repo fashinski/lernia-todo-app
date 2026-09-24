@@ -1,0 +1,90 @@
+/* Basic page layout. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+  margin: 0;
+  padding: 24px;
+}
+
+main {
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+}
+
+h1 {
+  color: #1d4ed8;
+}
+
+/* Keep the input and button together. */
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Feedback for empty input. */
+#info {
+  color: #b91c1c;
+  min-height: 24px;
+}
+
+/* Each task has text and a small trash button. */
+#todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+#todo-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #f1f5f9;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.todo-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Completed tasks get grey text and a line through the text. */
+.completed .todo-text {
+  color: #64748b;
+  text-decoration: line-through;
+}
+
+.trash-button {
+  flex-shrink: 0;
+  padding: 6px 10px;
+}
+
+/* Set the size of the emoji beside the title. */
+.title-emoji {
+  font-size: 25px;
+}

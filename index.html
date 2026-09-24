@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My ToDo - Lernia</title>
+
+  <!-- Link to the separate stylesheet. -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>My ToDo - By Eli <span class="title-emoji">&#128526;</span></h1>
+    <p>Click a task to mark it as completed or unfinished.</p>
+
+    <!-- Show how many tasks are completed. -->
+    <p id="completed-label" aria-live="polite">0 completed of 0 tasks</p>
+
+    <!-- Input and button for adding a new task. -->
+    <label for="todo-input">New task</label>
+    <div class="input-row">
+      <input id="todo-input" type="text" placeholder="Write a task">
+      <button id="add-button" type="button">Add task</button>
+    </div>
+
+    <!-- Show a message when the input is empty. -->
+    <p id="info" role="alert"></p>
+
+    <!-- JavaScript adds each task as an li inside this list. -->
+    <ul id="todo-list"></ul>
+  </main>
+
+  <!-- Load JavaScript after the HTML elements. -->
+  <script src="script.js"></script>
+</body>
+</html>
