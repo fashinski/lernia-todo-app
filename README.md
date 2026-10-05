@@ -22,9 +22,6 @@ I matched the pink gradient, white panel, heading and task layout from the video
 The panel moves down from above and fades in. New tasks fade in while moving
 upwards. Completed text fades to grey. Empty input shows a blinking red message.
 
-## Run it
-
-Open `index.html` with Live Server in VS Code. No packages need to be installed.
 
 ## Link
 
