@@ -5,25 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My ToDo - Lernia</title>
 
-  <!-- Link to the separate stylesheet. -->
+  <!-- Keep the CSS in a separate file. -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- The white panel enters from above when the page opens. -->
   <main>
-    <h1>My ToDo - By Eli <span class="title-emoji">&#128526;</span></h1>
-    <p>Click a task to mark it as completed or unfinished.</p>
+    <h1>My ToDo</h1>
 
-    <!-- Show how many tasks are completed. -->
-    <p id="completed-label" aria-live="polite">0 completed of 0 tasks</p>
+    <!-- Update this label when a task is completed, undone or deleted. -->
+    <p id="completed-label" aria-live="polite">0 completed</p>
 
-    <!-- Input and button for adding a new task. -->
-    <label for="todo-input">New task</label>
+    <!-- Keep an accessible label without adding text to the video layout. -->
+    <label for="todo-input" class="visually-hidden">New task</label>
     <div class="input-row">
-      <input id="todo-input" type="text" placeholder="Write a task">
-      <button id="add-button" type="button">Add task</button>
+      <input id="todo-input" type="text" autocomplete="off" aria-describedby="info">
+      <button id="add-button" type="button">OK</button>
     </div>
 
-    <!-- Show a message when the input is empty. -->
+    <!-- An empty submission shows the blinking red message here. -->
     <p id="info" role="alert"></p>
 
     <!-- JavaScript adds each task as an li inside this list. -->

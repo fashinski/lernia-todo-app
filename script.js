@@ -11,13 +11,28 @@ const completedLabel = document.querySelector("#completed-label");
 // Connect the button to a named function, as in lesson 13.
 addButton.addEventListener("click", addTodo);
 
+// Enter adds a task too, using the same function as the OK button.
+input.addEventListener("keydown", handleInputKeydown);
+
+function handleInputKeydown(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addTodo();
+  }
+}
+
 // Add a new task to both the array and the HTML list.
 function addTodo() {
   const text = input.value.trim();
 
   // Stop if the input is empty or contains only spaces.
   if (text.length === 0) {
-    info.textContent = "Please write a task before adding it.";
+    info.textContent = "Input must not be empty";
+    input.setAttribute("aria-invalid", "true");
+    // Restart the red blink, even after another empty click.
+    info.classList.remove("error-blink");
+    void info.offsetWidth;
+    info.classList.add("error-blink");
     input.focus();
     return;
   }
@@ -28,6 +43,8 @@ function addTodo() {
 
   // Create the list item and its text.
   const item = document.createElement("li");
+  // CSS makes this new row fade in while sliding upwards.
+  item.classList.add("task-enter");
   const itemLabel = document.createElement("span");
   itemLabel.classList.add("todo-text");
   itemLabel.textContent = todo.name;
@@ -74,6 +91,8 @@ function addTodo() {
   // Clear the input and message, then update the counter.
   input.value = "";
   info.textContent = "";
+  info.classList.remove("error-blink");
+  input.removeAttribute("aria-invalid");
   input.focus();
   updateCompletedCount();
 }
@@ -88,5 +107,5 @@ function updateCompletedCount() {
     }
   }
 
-  completedLabel.textContent = `${completedCount} completed of ${todos.length} tasks`;
+  completedLabel.textContent = `${completedCount} completed`;
 }

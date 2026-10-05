@@ -1,90 +1,256 @@
-/* Basic page layout. */
+/* Match the pink gradient and centred white panel in the video. */
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #f1f5f9;
-  color: #1e293b;
   margin: 0;
-  padding: 24px;
+  min-height: 100vh;
+  padding: 13px 16px 24px;
+  background: linear-gradient(to bottom, #fdc4c4, #fe7b7c);
+  background-attachment: fixed;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 main {
-  max-width: 600px;
-  margin: 24px auto;
-  padding: 24px;
-  background: white;
-  border-radius: 12px;
+  width: 560px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px 30px 45px;
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: page-enter 900ms ease-out both;
 }
 
+/* Only the title uses the default serif look shown in the video. */
 h1 {
-  color: #1d4ed8;
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 56px;
+  line-height: 1.14;
+  animation: fade-in 300ms ease 900ms both;
 }
 
-/* Keep the input and button together. */
+#completed-label {
+  margin: 14px 0 36px;
+  font-size: 17px;
+  line-height: 21px;
+  animation: fade-in 300ms ease 1000ms both;
+}
+
+/* Keep the input and the native-looking OK button on the same line. */
 .input-row {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  animation: fade-in 300ms ease 1100ms both;
+}
+
+input,
+#add-button {
+  height: 38px;
+  border: 1px solid #777;
+  border-radius: 3px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  line-height: normal;
 }
 
 input {
-  flex: 1;
+  width: 263px;
   min-width: 0;
-  padding: 10px;
-  font-size: 1rem;
+  max-width: 100%;
+  padding: 2px 5px;
+  background: #fff;
 }
 
-button {
-  padding: 10px 14px;
+#add-button {
+  flex-shrink: 0;
+  padding: 2px 12px;
+  background: #eee;
+  color: #000;
   cursor: pointer;
-  font-size: 1rem;
 }
 
-/* Feedback for empty input. */
+#add-button:hover {
+  background: #ddd;
+}
+
+/* The warning stays red and pulses until a valid task is added. */
 #info {
-  color: #b91c1c;
-  min-height: 24px;
+  margin: 8px 0 0;
+  color: red;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 22px;
 }
 
-/* Each task has text and a small trash button. */
+#info:empty {
+  display: none;
+}
+
+#info.error-blink {
+  animation: error-blink 600ms ease-in-out infinite;
+}
+
+/* Task rows have no bullets, borders or coloured boxes. */
 #todo-list {
-  list-style: none;
+  margin: 26px 0 0;
   padding: 0;
+  list-style: none;
+}
+
+#todo-list:empty {
+  display: none;
 }
 
 #todo-list li {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 12px;
-  padding: 12px;
-  margin-bottom: 8px;
-  background: #f1f5f9;
-  border-radius: 6px;
+  gap: 14px;
+  margin: 0 0 16px;
+  font-size: 28px;
+  line-height: 34px;
   cursor: pointer;
 }
 
-.todo-text {
-  flex: 1;
-  min-width: 0;
-  overflow-wrap: anywhere;
+#todo-list li:last-child {
+  margin-bottom: 0;
 }
 
-/* Completed tasks get grey text and a line through the text. */
+/* Only new rows fade in and move upwards. Existing rows stay still. */
+#todo-list li.task-enter {
+  animation: task-enter 300ms ease-out both;
+}
+
+.todo-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #000;
+  transition: color 300ms ease;
+}
+
+/* Hover previews the line. Clicking changes the stored status as well. */
+#todo-list li:hover .todo-text,
 .completed .todo-text {
-  color: #64748b;
   text-decoration: line-through;
 }
 
-.trash-button {
-  flex-shrink: 0;
-  padding: 6px 10px;
+.completed .todo-text {
+  color: #7c7c7c;
 }
 
-/* Set the size of the emoji beside the title. */
-.title-emoji {
-  font-size: 25px;
+/* Keep the small basket visible beside every task. */
+.trash-button {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #888;
+  font-size: 18px;
+  line-height: 1;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.trash-button:hover,
+.trash-button:focus-visible {
+  opacity: 1;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Enter from above, settle into place and fade in. */
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(-110%);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(80px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes task-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes error-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.15;
+  }
+}
+
+/* Keep the same layout on smaller screens without horizontal scrolling. */
+@media (max-width: 480px) {
+  main {
+    padding: 20px 16px 32px;
+  }
+
+  h1 {
+    font-size: 44px;
+  }
+
+  #todo-list li {
+    font-size: 24px;
+  }
+}
+
+/* Respect the device's setting for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  main,
+  h1,
+  #completed-label,
+  .input-row,
+  #todo-list li.task-enter,
+  #info.error-blink {
+    animation: none;
+  }
+
+  .todo-text {
+    transition: none;
+  }
 }
