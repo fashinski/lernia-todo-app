@@ -1,8 +1,8 @@
-# My ToDo - Lernia
+# My ToDo - Lernia - Eli 261005
 
 This is my ToDo app for A2 submission 1.
 I continued the app from the previous course and styled it using the teacher's
-reference video and the instructions from lesson 3.
+reference video.
 
 The app uses plain HTML, CSS and JavaScript in separate files.
 
