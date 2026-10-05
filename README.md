@@ -1,4 +1,4 @@
-# My ToDo - Lernia - Eli 261005
+## My ToDo - Lernia - Eli 261005
 
 This is my ToDo app for A2 submission 1.
 I continued the app from the previous course and styled it using the teacher's
@@ -26,7 +26,6 @@ upwards. Completed text fades to grey. Empty input shows a blinking red message.
 
 Open `index.html` with Live Server in VS Code. No packages need to be installed.
 
-## Links
+## Link
 
-- [GitHub repository](https://github.com/fashinski/lernia-todo-app)
-- [GitHub Pages](https://fashinski.github.io/lernia-todo-app/)
+- https://fashinski.github.io/lernia-todo-app/
